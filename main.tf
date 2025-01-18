@@ -46,6 +46,7 @@ module "jenkins" {
   tags            = var.tags
 }
 
+
 # S3 Bucket for Artifacts
 resource "aws_s3_bucket" "ci_cd_artifacts" {
   bucket = var.artifact_bucket_name

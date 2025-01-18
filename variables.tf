@@ -98,9 +98,30 @@ variable "iam_roles" {
       }
       EOF
       policies = ["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"]
+    },
+    eks_cluster = {
+      assume_role_policy = <<EOF
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "eks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+      EOF
+      policies = [
+        "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+        "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+      ]
     }
   }
 }
+
 
 variable "artifact_bucket_name" {
   description = "Name of the S3 bucket for artifacts"

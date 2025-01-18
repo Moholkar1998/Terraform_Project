@@ -17,3 +17,8 @@ output "eks_cluster_role_arn" {
 output "eks_worker_role_arn" {
   value = module.iam.eks_worker_role_arn
 }
+
+output "eks_cluster_endpoint" {
+  value       = module.eks.eks_cluster_endpoint
+  description = "The endpoint of the EKS cluster"
+}
