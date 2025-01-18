@@ -1,0 +1,40 @@
+terraform/
+├── modules/
+│   ├── vpc/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+│   ├── eks/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+│   ├── ec2/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+│   └── s3/
+│       ├── main.tf
+│       ├── variables.tf
+│       ├── outputs.tf
+├── environments/
+│   ├── dev.tfvars
+│   └── prod.tfvars
+├── backend/
+│   ├── dev-backend.tf
+│   └── prod-backend.tf
+├── main.tf
+├── variables.tf
+├── providers.tf
+└── outputs.tf
+
+
+Initialize Terraform in the environment folder:
+	cd terraform/backend
+	terraform init -backend-config=dev-backend.tf
+
+Apply the configuration with environment-specific variables:
+	terraform apply -var-file=../environments/dev.tfvars
+	Repeat for the production environment:
+
+terraform init -backend-config=prod-backend.tf
+terraform apply -var-file=../environments/prod.tfvars
