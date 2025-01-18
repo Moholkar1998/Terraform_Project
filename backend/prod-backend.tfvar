@@ -1,4 +1,0 @@
-bucket         = "your-prod-terraform-state-bucket"
-key            = "terraform/state/prod/terraform.tfstate"
-region         = "us-east-1"
-dynamodb_table = "your-prod-terraform-lock-table"

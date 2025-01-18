@@ -6,6 +6,7 @@ This project demonstrates the use of Terraform to provision infrastructure for a
 
 The repository is organized as follows:
 
+```
 terraform/
 ├── modules/
 │ ├── vpc/
@@ -34,6 +35,7 @@ terraform/
 ├── variables.tf
 ├── providers.tf
 └── outputs.tf
+```
 
 ## Prerequisites
 
@@ -128,29 +130,35 @@ This module provisions EC2 instances for Jenkins.
 
 This module provisions an S3 bucket for storing artifacts.
 
-Inputs and Outputs
+## Inputs and Outputs
 
-Global Variables
-Defined in the root variables.tf file. Examples include:
-aws_region: The AWS region to deploy resources.
-key_name: Name of the key pair for EC2 instances.
-artifact_bucket_name: Name of the S3 bucket for artifacts.
+### Global Variables
 
-Environment-Specific Variables
-Defined in environments/dev.tfvars and environments/prod.tfvars. Examples include:
-vpc_name: Name of the VPC.
-eks_cluster_name: Name of the EKS cluster.
+- Defined in the root variables.tf file. Examples include:
+- aws_region: The AWS region to deploy resources.
+- key_name: Name of the key pair for EC2 instances.
+- artifact_bucket_name: Name of the S3 bucket for artifacts.
 
-Outputs
-Defined in the root outputs.tf file and module-specific outputs.tf files. Examples include:
-eks_cluster_name: Name of the created EKS cluster.
-jenkins_url: URL of the Jenkins server.
+### Environment-Specific Variables
 
-License
+- Defined in environments/dev.tfvars and environments/prod.tfvars. Examples include:
+- vpc_name: Name of the VPC.
+- eks_cluster_name: Name of the EKS cluster.
+
+### Outputs
+
+- Defined in the root outputs.tf file and module-specific outputs.tf files. Examples include:
+- eks_cluster_name: Name of the created EKS cluster.
+- jenkins_url: URL of the Jenkins server.
+
+## License
+
 This project is licensed under the MIT License.
 
-Contributing
+## Contributing
+
 Contributions are welcome! Please follow the standard GitHub Flow when submitting changes.
 
-Support
+## Support
+
 For any questions or issues, please open an issue in this repository.
