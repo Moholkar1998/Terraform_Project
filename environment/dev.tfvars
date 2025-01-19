@@ -18,28 +18,8 @@ node_groups = {
 }
 
 jenkins_ami             = "ami-0a313d6098716f372"
-jenkins_instance_type   = "t3.micro"
-key_name                = "your-dev-key-pair"
-
-iam_roles = {
-  eks_worker = {
-    assume_role_policy = <<EOF
-    {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Effect": "Allow",
-          "Principal": {
-            "Service": "ec2.amazonaws.com"
-          },
-          "Action": "sts:AssumeRole"
-        }
-      ]
-    }
-    EOF
-    policies = ["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"]
-  }
-}
+jenkins_instance_type   = "t2.micro"
+key_name                = ""
 
 artifact_bucket_name = "dev-ci-cd-pipeline-artifacts"
 

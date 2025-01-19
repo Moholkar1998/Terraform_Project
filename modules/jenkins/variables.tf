@@ -1,3 +1,8 @@
+variable "vpc_id" {
+  description = "vpc_id for EC2 instance"
+  type        = string
+}
+
 variable "ami" {
   description = "AMI for Jenkins EC2 instance"
   type        = string
@@ -8,10 +13,6 @@ variable "instance_type" {
   type        = string
 }
 
-variable "security_groups" {
-  description = "Security groups for the Jenkins EC2 instance"
-  type        = list(string)
-}
 
 variable "key_name" {
   description = "Key pair name for EC2 instance"

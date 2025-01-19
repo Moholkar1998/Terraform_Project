@@ -71,57 +71,27 @@ variable "jenkins_ami" {
 
 variable "jenkins_instance_type" {
   description = "Instance type for Jenkins EC2"
-  default     = "t3.micro"
+  default     = "t2.micro"
 }
 
 variable "key_name" {
   description = "Key pair name for EC2 instance"
+  default     = "Terraform"
 }
 
-variable "iam_roles" {
-  description = "IAM roles for various services"
-  type        = map(object({ assume_role_policy = string, policies = list(string) }))
-  default = {
-    eks_worker = {
-      assume_role_policy = <<EOF
-      {
-        "Version": "2012-10-17",
-        "Statement": [
-          {
-            "Effect": "Allow",
-            "Principal": {
-              "Service": "ec2.amazonaws.com"
-            },
-            "Action": "sts:AssumeRole"
-          }
-        ]
-      }
-      EOF
-      policies = ["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"]
-    },
-    eks_cluster = {
-      assume_role_policy = <<EOF
-      {
-        "Version": "2012-10-17",
-        "Statement": [
-          {
-            "Effect": "Allow",
-            "Principal": {
-              "Service": "eks.amazonaws.com"
-            },
-            "Action": "sts:AssumeRole"
-          }
-        ]
-      }
-      EOF
-      policies = [
-        "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
-        "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
-      ]
-    }
-  }
+variable "eks-worker-policy-arn" {
+  type = list(string)
+  default = [ "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly", 
+             "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+             "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"]
+  
 }
-
+variable "eks-cluster-policy-arn" {
+  type = list(string)
+  default = [ "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+        "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"]
+  
+}
 
 variable "artifact_bucket_name" {
   description = "Name of the S3 bucket for artifacts"
